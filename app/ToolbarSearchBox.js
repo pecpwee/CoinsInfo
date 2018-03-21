@@ -1,0 +1,30 @@
+import React, { Component } from 'react';
+import { View, Button, TextInput } from 'react-native'
+
+export default class ToolbarSearchBox extends React.Component {
+
+    constructor() {
+        super()
+        this.state = {
+            isInputBoxShow: false
+        }
+
+
+    }
+    render() {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', flexDirection: 'row' }} >
+                {this.state.isInputBoxShow ?
+                    <TextInput style={{ flex: 1, width: 60}}
+                        onChangeText={
+                            (text) => {
+                                this.props.onChangeText(text)
+                            }}
+                    /> : null}
+
+                <Button title={'Search'} style={{ flex: 1, width: 60}}
+                    onPress={() => { this.setState({ ...this.state, isInputBoxShow: !this.state.isInputBoxShow }) }} />
+            </View>
+        )
+    }
+}
