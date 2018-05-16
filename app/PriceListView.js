@@ -46,17 +46,17 @@ export default class PriceListView extends React.Component {
                         width: 70, flex: 1
                     }}>
                         <Text style={{ flex: 1, fontSize: 10 }}>
-                            {'last' + item.data.ticker.last}
+                            {'last: ' + item.data.ticker.last.substring(0, 7)}
                         </Text>
 
                         <Text style={{ flex: 1, fontSize: 10 }}>
-                            {'vol' + item.data.ticker.vol}
+                            {'vol:  ' + item.data.ticker.vol.substring(0, 7)}
                         </Text>
                         <Text style={{ flex: 1, fontSize: 10, color: 'red' }}>
-                            {'low' + item.data.ticker.low}
+                            {'low:  ' + item.data.ticker.low.substring(0, 7)}
                         </Text>
                         <Text style={{ flex: 1, fontSize: 10, color: 'green' }}>
-                            {'high' + item.data.ticker.high}
+                            {'high: ' + item.data.ticker.high.substring(0, 7)}
                         </Text>
                     </View>
                     <StarButton

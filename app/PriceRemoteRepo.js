@@ -30,17 +30,21 @@ export default class PriceRemoteRepo {
             let jsonObj = await response.json()
             let resultObj = {
                 all: [],
-                cny: [],
-                btc: [],
-                eth: [],
-                time: null
+                // cny: [],
+                // btc: [],
+                // eth: [],
+                // time: null //replace with dynamic create
             }
             Object.keys(jsonObj).forEach(
                 (element) => {
                     resultObj.all.push({ key: element, name: element, data: jsonObj[element] })
                     let coinbaseStr = element.substring(element.indexOf('_') + 1)//example:'otc_btc' 
+                    if(!resultObj.hasOwnProperty(coinbaseStr)){
+                        resultObj[coinbaseStr] =[]
+                    }
                     resultObj[coinbaseStr].push({ key: element, name: element, data: jsonObj[element] })
                 });
+            resultObj.coinBaseNames = Object.keys(resultObj)
             resultObj.time = new Date().getTime()
             cachedResultObj = resultObj
             return resultObj;

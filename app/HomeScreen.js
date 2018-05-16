@@ -34,6 +34,7 @@ export default class HomeScreen extends React.Component {
             , currentShowListData: []
             , coinBaseUnitKeyword: 'all'
             , searchBoxKeyWord: ''
+            , coinBaseNames: []
         }
     }
 
@@ -49,7 +50,7 @@ export default class HomeScreen extends React.Component {
                     ...prevState
                     , isRefreshing: false
                     , completeListData: resultObj.all
-
+                    , coinBaseNames: resultObj.coinBaseNames
                     , datas: resultObj,
                     currentShowListData:
                         PriceRemoteRepo.filterArrayByKeywords(resultObj[prevState.coinBaseUnitKeyword]
@@ -133,11 +134,17 @@ export default class HomeScreen extends React.Component {
                         }}
                         mode={"dropdown"}
                     >
-                        <Picker.Item label="ALL" value="all" />
+                        {
+                            (this.state.coinBaseNames.length > 0) ?
+                                this.state.coinBaseNames.map((value, key) =>
+                                    <Picker.Item label={value.toUpperCase()} value={value.toLowerCase()} key={key} />
+                                ) : []
+                        }
+
+                        {/* <Picker.Item label="ALL" value="all" />
                         <Picker.Item label="CNY" value="cny" />
                         <Picker.Item label="BTC" value="btc" />
-                        <Picker.Item label="ETH" value="eth" />
-
+                        <Picker.Item label="ETH" value="eth" />*/}
                     </Picker>
                 </View>
                 <PriceListView
